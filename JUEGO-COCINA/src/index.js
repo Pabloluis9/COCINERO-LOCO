@@ -1,5 +1,12 @@
 window.addEventListener("load", () => {
     const container = document.getElementById("game-board");   
+    const btnStart = document.getElementById("intro-game-btn");
+    const introBoard = document.getElementById("intro-game");
 
-    new Game(container)
+
+    btnStart.addEventListener("click", () => {
+        introBoard.remove();
+        const game = new Game(container);
+        game.start();
+      });
 });
