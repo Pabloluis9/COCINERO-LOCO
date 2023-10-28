@@ -1,68 +1,115 @@
 class Player {
-    constructor(container) {
-        this.container = container;
-        this.width = 100;
-        this.height = 100;
-        this.x = 10;
-        this.y = 400;
-        this.directionX = 0;
-        this.directionY = 0;
-        
-        this.element = document.createElement("img");
-        this.element.src = "./assets/cocinero.png";
-        this.draw();
+  constructor(container) {
+    this.container = container;
+    this.width = 100;
+    this.height = 100;
+    this.x = 10; 
+    this.y = 400;
+    this.floor = 400;
+    this.vx = 0;
+    this.jumpingSpeed = 0;
+    this.element = document.createElement("img");
+    this.element.src = "./assets/cocinero.png";
+    this.movements = {
+      right: false,
+      left: false,
+    };
+    this.draw();
+    this.jumping = false;
+    this.gravity = 0.98;
 
+    this.draw();
+    this.setListeners();
+  }
+
+  draw() {
+    if (this.element) {
+      this.element.remove();
     }
+    this.element.style.width = `${this.width}px`;
+    this.element.style.height = `${this.height}px`;
+    this.element.style.left = `${this.x}px`;
+    this.element.style.top = `${this.y}px`;
+    this.container.appendChild(this.element);
+    this.element.style.position = "absolute";
+  }
 
-    draw() {
-        this.element.style.width = `${this.width}px`;
-        this.element.style.height = `${this.height}px`;
-        this.element.style.left = `${this.x}px`;
+  jump() {
+    if (!this.jumping) {
+      this.jumpingSpeed = 15;
+      this.jumping = true;
+    }
+  }
+
+  move() {
+    if (this.vx > 0) {
+
+    this.draw();
+  } else if (this.vx < 0) {
+    if (this.x > 0) {
+      this.movements.left = true;
+    } else {
+      this.x = 0; 
+    }
+  } else {
+    this.movements.right = false;
+    this.movements.left = false;
+    this.imgSrc = this.imgStaticSrc;
+    this.animationTick = 0;
+    this.draw();
+  }
+  this.x += this.vx;
+
+  if (this.x <= 0) {
+    this.x = 0;
+}
+if (this.x + this.width >= this.container.offsetWidth) {
+    this.x = this.container.offsetWidth - this.width;
+}
+this.element.style.left = `${this.x}px`;
+
+    if (this.jumping) {
+      this.y -= this.jumpingSpeed;
+      this.element.style.top = `${this.y}px`;
+      this.jumpingSpeed -= this.gravity;
+
+      const isFloor = this.y >= this.floor;
+
+      if (isFloor) {
+        this.jumpingSpeed = 0;
+        this.jumping = false;
+        this.y = this.floor;
         this.element.style.top = `${this.y}px`;
-        this.container.appendChild(this.element)
-        this.element.style.position = "absolute";
+      }
     }
+  }
 
-    jump() {
-        if (!this.jumping) {
-          this.jumpingSpeed = 15;
-          this.jumping = true;
-        }
+  setListeners() {
+    window.addEventListener("keydown", (e) => {
+      switch (e.code) {
+        case "ArrowRight":
+          this.vx = 10;
+          break;
+        case "ArrowLeft":
+          this.vx = -10;
+          break;
+        case "Space":
+          this.jump();
+          break; 
+        default:
+          return;
       }
+    });
 
-      move() {
-        // Update player's car position based on directionX and directionY
-        this.left += this.directionX;
-        this.top += this.directionY;
-    
-        // Ensure the player's car stays within the game screen
-        // handles left hand side
-        if (this.left < 10) {
-          this.left = 10;
-        }
-    
-        // handles top side
-        if (this.top < 10) {
-          this.top = 10;
-        }
-    
-        // handles right hand side
-        if (this.left > this.gameScreen.offsetWidth - this.width - 10) {
-          this.left = this.gameScreen.offsetWidth - this.width - 10;
-        }
-    
-        // handles bottom side
-        if (this.top > this.gameScreen.offsetHeight - this.height - 10) {
-          this.top = this.gameScreen.offsetHeight - this.height - 10;
-        }
-    
-        // Update the player's car position on the screen
-        this.updatePosition();
+    window.addEventListener("keyup", (e) => {
+      switch (e.code) {
+        case "ArrowRight":
+        case "ArrowLeft":
+          this.vx = 0;
+          break;
+        default:
+          return;
       }
-    
-      updatePosition() {
-        this.element.style.left = `${this.left}px`;
-        this.element.style.top = `${this.top}px`;
-      }
-
+    });
+  }
 }
