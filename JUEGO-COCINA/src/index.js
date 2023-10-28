@@ -7,6 +7,6 @@ window.addEventListener("load", () => {
     btnStart.addEventListener("click", () => {
         introBoard.remove();
         const game = new Game(container);
-        game.start();
+        
       });
 });
