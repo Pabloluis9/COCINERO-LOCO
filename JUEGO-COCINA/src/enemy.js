@@ -5,40 +5,62 @@ class Enemy {
         this.height = 100;
         this.x = 700;
         this.y = 390;
-        this.vx = -10;
-        this.isMovingRight = true;
-
+        this.vx = 2;
         this.element = document.createElement("img");
-        this.element.src = "./assets/enemy.png";
-
         this.element.style.position = "absolute";
         this.element.style.width = `${this.width}px`;
         this.element.style.height = `${this.height}px`;
         this.element.style.left = `${this.x}px`;
         this.element.style.top = `${this.y}px`;
-
         this.container.appendChild(this.element);
 
-        
+        this.isMovingRight = true;
+
+        this.startMoving();
     }
 
-    move() {
-        this.x += this.vx;
-
-        // Verifica si el enemigo ha llegado al borde derecho o izquierdo
-        const leftBoundary = 0;  // Límite izquierdo de movimiento
-        const rightBoundary = this.container.clientWidth - this.width;  // Límite derecho de movimiento
-
-        if (this.x <= leftBoundary) {
-            this.x = leftBoundary; // Establece la posición en el límite izquierdo
-            this.vx = Math.abs(this.vx); // Cambia la dirección a la derecha
-        } else if (this.x >= rightBoundary) {
-            this.x = rightBoundary; // Establece la posición en el límite derecho
-            this.vx = -Math.abs(this.vx); // Cambia la dirección a la izquierda
+    moveRandomly() {
+        if (this.isMovingRight) {
+            this.x += this.vx;
+        } else {
+            this.x -= this.vx;
         }
 
-        // Actualiza la posición en la pantalla
+        // Cambiar la imagen cuando cambie la dirección
+        if (this.isMovingRight) {
+            this.element.src = "./assets/enemy.png"; // Ruta de la imagen original
+        } else {
+            this.element.src = "./assets/enemy-2.png"; // Ruta de la nueva imagen
+        }
+
+        // Agrega una probabilidad aleatoria de cambio de dirección
+        if (Math.random() < 0.01) {
+            this.isMovingRight = !this.isMovingRight;
+        }
+
+        // Limita el movimiento dentro de la ventana
+        if (this.x <= 0) {
+            this.isMovingRight = true;
+        } else if (this.x + this.width >= window.innerWidth) {
+          
+            this.isMovingRight = false;
+        }
+
         this.element.style.left = `${this.x}px`;
+
+        requestAnimationFrame(this.moveRandomly.bind(this));
+    }
+
+    startMoving() {
+        requestAnimationFrame(this.moveRandomly.bind(this));
+    }
+
+    stopMoving() {
+        // Detener la animación si es necesario
     }
 }
 
+const container = document.getElementById("container");
+
+// Crear una instancia del enemigo
+const enemy = new Enemy(container);
