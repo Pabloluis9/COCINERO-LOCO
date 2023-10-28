@@ -5,9 +5,8 @@ class Enemy {
         this.height = 100;
         this.x = 700;
         this.y = 390;
-        this.vx = 2; 
+        this.vx = 2;
         this.element = document.createElement("img");
-        this.element.src = "./assets/enemy.png";
         this.element.style.position = "absolute";
         this.element.style.width = `${this.width}px`;
         this.element.style.height = `${this.height}px`;
@@ -17,10 +16,6 @@ class Enemy {
 
         this.isMovingRight = true;
 
-        setInterval(() => {
-            this.isMovingRight = Math.random() < 0.5; 
-        }, 2000);
-        
         this.startMoving();
     }
 
@@ -31,9 +26,23 @@ class Enemy {
             this.x -= this.vx;
         }
 
+        // Cambiar la imagen cuando cambie la dirección
+        if (this.isMovingRight) {
+            this.element.src = "./assets/enemy.png"; // Ruta de la imagen original
+        } else {
+            this.element.src = "./assets/enemy-2.png"; // Ruta de la nueva imagen
+        }
+
+        // Agrega una probabilidad aleatoria de cambio de dirección
+        if (Math.random() < 0.01) {
+            this.isMovingRight = !this.isMovingRight;
+        }
+
+        // Limita el movimiento dentro de la ventana
         if (this.x <= 0) {
             this.isMovingRight = true;
-        } else if (this.x >= window.innerWidth - this.width) {
+        } else if (this.x + this.width >= window.innerWidth) {
+          
             this.isMovingRight = false;
         }
 
@@ -47,8 +56,11 @@ class Enemy {
     }
 
     stopMoving() {
-        
+        // Detener la animación si es necesario
     }
 }
 
-const container = document.getElementById("container"); 
+const container = document.getElementById("container");
+
+// Crear una instancia del enemigo
+const enemy = new Enemy(container);

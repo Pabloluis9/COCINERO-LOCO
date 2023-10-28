@@ -6,6 +6,7 @@ body {
     justify-content: center;
     background-color: rgb(210, 210, 210);
     margin: 0;
+    
   }
 
 #game-board {
@@ -14,6 +15,7 @@ body {
   height: 500px;
   background-color: white;
   position: relative;
+  
 }
 
 #intro-game {
@@ -30,6 +32,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1001;
+  }
+
+  #fallingObject {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    position: absolute; 
+    z-index: 999;
   }
 
  
