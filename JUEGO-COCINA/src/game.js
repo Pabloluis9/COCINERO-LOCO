@@ -4,7 +4,6 @@ class Game {
         this.background = new Background(this.container);
         this.player = new Player(this.container);
         this.enemy = new Enemy(this.container);
-        this.score = new Score(this.container, this.player.hits);
         this.items = [];
         this.intervalId = null;
     }
@@ -25,6 +24,7 @@ class Game {
         item.move();
       });
       this.checkCollisions();
+      this.checkCollisionEnemy();
   
       // Agrega nuevos elementos si corresponde
       if (Math.random() > 0.98) {
@@ -62,10 +62,17 @@ class Game {
         if (collidedItem.type === "poison") {
           this.enemy.vx += 2;
         }
-        
+       
         collidedItem.element.style.display = "none";
+      }
+    }
+      
+checkCollisionEnemy() {
+  if (this.enemy.didCollide(this.player)){
+    console.log("collision");
+  }
       }
       
 }
 
-}
+
