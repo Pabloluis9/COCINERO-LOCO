@@ -34,13 +34,22 @@ body {
     justify-content: center;
     z-index: 1001;
   }
-
-  #fallingObject {
-    width: 30px;
-    height: 30px;
-    background-color: red;
-    position: absolute; 
-    z-index: 999;
+  
+  #score {
+    display: flex;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+    font-family: "Courier New", Courier, monospace;
   }
-
  
+  #hearts-container {
+    display: flex;
+  }
+  
+  #hearts-container img {
+    margin-right: 4px;
+  }
+  
+  #score h4 {
+    color: rgb(182, 209, 29);
+  }
