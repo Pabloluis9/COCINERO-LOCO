@@ -5,6 +5,8 @@ class Game {
         this.player = new Player(this.container);
         this.enemy = new Enemy(this.container);
         this.score = new Score(this.container);
+        this.chronometer = new Chronometer(this.container);
+
         this.items = [];
         this.intervalId = null;
     }
@@ -13,6 +15,7 @@ class Game {
       this.intervalId = setInterval(() => {
         this.update();
       }, 1000 / 36);
+      this.chronometer.start()
     }
    
     
@@ -27,7 +30,7 @@ class Game {
       this.checkCollisions();
   
       // Agrega nuevos elementos si corresponde
-      if (Math.random() > 0.98) {
+      if (Math.random() > 0.99) {
         this.items.push(new Item(this.container));
       }
   
@@ -49,6 +52,15 @@ class Game {
   
       this.items = filteredItems;
     }
+
+    mostrarValorElemento(elemento, valor) {
+      elemento.innerText = valor;
+      elemento.style.display = "block";
+  
+      setTimeout(function() {
+          elemento.style.display = "none";
+      }, 250); // Mostrar durante 1 segundo (1000 ms)
+  }
     checkCollisions() {
   
   
@@ -59,20 +71,25 @@ class Game {
   
       if (collidedItem) {
 
+        let valorElemento = document.getElementById("valorElemento");
+
         if (collidedItem.type === "poison") {
           this.enemy.vx += 2;
         }
 
         if (collidedItem.type === "apple") {
           this.score.scorePoints(100);
+          this.mostrarValorElemento(valorElemento, "+100");
         }
 
         if (collidedItem.type === "banana") {
           this.score.scorePoints(100);
+          this.mostrarValorElemento(valorElemento, "+100");
         }
 
         if (collidedItem.type === "burger") {
           this.score.scorePoints(200);
+          this.mostrarValorElemento(valorElemento, "+200");
         }
        
         collidedItem.element.style.display = "none";
@@ -97,6 +114,7 @@ checkCollisionEnemy() {
   
     clearInterval(this.intervalId);
   }
+
 }
 
 

@@ -63,6 +63,22 @@ body {
   #intro-game button:hover {
     background-color: #dbd9e2;
   }
+
+  #valorElemento {
+    display: none;
+    width: 100px;
+    border: none;
+    color: #cdcbd1;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 340px;
+    z-index: 1002;
+    position: relative;
+
+  }
  
   #game-over-board {
     width: 800px;
@@ -83,8 +99,10 @@ body {
     font-family: "Courier New", Courier, monospace;
     color: red;
     font-size: 40px;
+    z-index: 1003;
   }
   
   #game-over-board h1 {
     text-shadow: 2px 2px black;
   }
+
