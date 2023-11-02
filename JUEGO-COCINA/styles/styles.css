@@ -19,6 +19,81 @@ body {
 }
 
 #intro-game {
+  width: 800px;
+  height: 500px;
+  background-image: url('./../assets/start-game.png');
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+}
+
+#chronometer {
+  margin-left: 600px;
+  padding: 10px 35px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  color: #000000;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+  
+  #score {
+    padding: 10px 35px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    color: #9E86F2;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  #intro-game button {
+    padding: 10px 35px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: none;
+    color: #9E86F2;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+    margin-top: 250px
+  }
+
+  #intro-game button:hover {
+    background-color: #dbd9e2;
+  }
+
+  #valorElemento {
+    display: none;
+    width: 100px;
+    border: none;
+    color: #cdcbd1;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 340px;
+    z-index: 1002;
+    position: relative;
+
+  }
+ 
+  #game-over-board {
     width: 800px;
     height: 500px;
     background-color: blue;
@@ -32,15 +107,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1001;
+    flex-direction: column;
+    display: none;
+    font-family: "Courier New", Courier, monospace;
+    color: red;
+    font-size: 40px;
+    z-index: 1003;
+  }
+  
+  #game-over-board h1 {
+    text-shadow: 2px 2px black;
   }
 
-  #fallingObject {
-    width: 30px;
-    height: 30px;
-    background-color: red;
-    position: absolute; 
-    z-index: 999;
-  }
-
- 

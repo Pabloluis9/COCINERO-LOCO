@@ -1,11 +1,11 @@
 class Player {
   constructor(container) {
     this.container = container;
-    this.width = 100;
-    this.height = 100;
+    this.width = 80;
+    this.height = 150;
     this.x = 10; 
-    this.y = 400;
-    this.floor = 400;
+    this.y = 330;
+    this.floor = 330;
     this.vx = 0;
     this.jumpingSpeed = 0;
     this.element = document.createElement("img");
@@ -14,12 +14,13 @@ class Player {
       right: false,
       left: false,
     };
-    this.draw();
     this.jumping = false;
     this.gravity = 0.98;
+    this.hits = 3;
 
     this.draw();
     this.setListeners();
+
   }
 
   draw() {
@@ -36,45 +37,29 @@ class Player {
 
   jump() {
     if (!this.jumping) {
-      this.jumpingSpeed = 15;
+      this.jumpingSpeed = 22;
       this.jumping = true;
     }
   }
 
+ 
   move() {
-    if (this.vx > 0) {
-
-    this.draw();
-  } else if (this.vx < 0) {
-    if (this.x > 0) {
-      this.movements.left = true;
-    } else {
-      this.x = 0; 
+    this.x += this.vx;
+    if (this.x <= 0) {
+        this.x = 0;
     }
-  } else {
-    this.movements.right = false;
-    this.movements.left = false;
-    this.imgSrc = this.imgStaticSrc;
-    this.animationTick = 0;
-    this.draw();
-  }
-  this.x += this.vx;
-
-  if (this.x <= 0) {
-    this.x = 0;
-}
-if (this.x + this.width >= this.container.offsetWidth) {
-    this.x = this.container.offsetWidth - this.width;
-}
-this.element.style.left = `${this.x}px`;
-
+    if (this.x + this.width >= this.container.offsetWidth) {
+        this.x = this.container.offsetWidth - this.width;
+    }
+    this.element.style.left = `${this.x}px`;
+  
     if (this.jumping) {
       this.y -= this.jumpingSpeed;
       this.element.style.top = `${this.y}px`;
       this.jumpingSpeed -= this.gravity;
-
+  
       const isFloor = this.y >= this.floor;
-
+  
       if (isFloor) {
         this.jumpingSpeed = 0;
         this.jumping = false;
@@ -82,6 +67,8 @@ this.element.style.left = `${this.x}px`;
         this.element.style.top = `${this.y}px`;
       }
     }
+    
+    this.draw();
   }
 
   setListeners() {
