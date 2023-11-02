@@ -1,11 +1,11 @@
 class Player {
   constructor(container) {
     this.container = container;
-    this.width = 100;
-    this.height = 100;
+    this.width = 80;
+    this.height = 150;
     this.x = 10; 
-    this.y = 400;
-    this.floor = 400;
+    this.y = 330;
+    this.floor = 330;
     this.vx = 0;
     this.jumpingSpeed = 0;
     this.element = document.createElement("img");
@@ -37,7 +37,7 @@ class Player {
 
   jump() {
     if (!this.jumping) {
-      this.jumpingSpeed = 15;
+      this.jumpingSpeed = 22;
       this.jumping = true;
     }
   }

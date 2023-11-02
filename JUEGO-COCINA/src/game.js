@@ -4,6 +4,7 @@ class Game {
         this.background = new Background(this.container);
         this.player = new Player(this.container);
         this.enemy = new Enemy(this.container);
+        this.score = new Score(this.container);
         this.items = [];
         this.intervalId = null;
     }
@@ -24,7 +25,6 @@ class Game {
         item.move();
       });
       this.checkCollisions();
-      this.checkCollisionEnemy();
   
       // Agrega nuevos elementos si corresponde
       if (Math.random() > 0.98) {
@@ -62,17 +62,41 @@ class Game {
         if (collidedItem.type === "poison") {
           this.enemy.vx += 2;
         }
+
+        if (collidedItem.type === "apple") {
+          this.score.scorePoints(100);
+        }
+
+        if (collidedItem.type === "banana") {
+          this.score.scorePoints(100);
+        }
+
+        if (collidedItem.type === "burger") {
+          this.score.scorePoints(200);
+        }
        
         collidedItem.element.style.display = "none";
       }
+
+      this.checkCollisionEnemy()
     }
       
 checkCollisionEnemy() {
-  if (this.enemy.didCollide(this.player)){
-    console.log("collision");
+    if (this.enemy.didCollide(this.player)){
+      this.gameOver();
+    }
   }
-      }
-      
+
+  gameOver() {
+    const gameOverBoard = document.getElementById("game-over-board");
+    const scoreElement = document.createElement("div");
+    scoreElement.id = "final-score";
+    scoreElement.textContent = `Final Score: ${this.score.items}`;
+    gameOverBoard.appendChild(scoreElement);
+    gameOverBoard.style.display = "flex";
+  
+    clearInterval(this.intervalId);
+  }
 }
 
 

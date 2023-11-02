@@ -1,11 +1,11 @@
 class Enemy {
     constructor(container) {
       this.container = container;
-      this.width = 100;
-      this.height = 100;
+      this.width = 80;
+      this.height = 150;
       this.x = 700;
-      this.y = 400;
-      this.floor = 400;
+      this.y = 330;
+      this.floor = 330;
       this.vx = 3;
       this.element = document.createElement("img");
       this.element.src = "./assets/enemy.png";

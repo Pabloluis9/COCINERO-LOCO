@@ -1,8 +1,8 @@
 class Item {
   constructor(container) {
     this.container = container;
-    this.width = 30;
-    this.height = 20;
+    this.width = 40;
+    this.height = 40;
     this.left = Math.floor(Math.random() * (container.offsetWidth - this.width));
     this.top = 0;
     this.speed = 3;
