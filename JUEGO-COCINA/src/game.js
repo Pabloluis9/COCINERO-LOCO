@@ -22,6 +22,7 @@ class Game {
     update() {
       this.player.move();
       this.enemy.move();
+      this.checkTime();
   
       // Mueve y verifica colisiones para los elementos existentes
       this.items.forEach((item) => {
@@ -103,6 +104,12 @@ checkCollisionEnemy() {
       this.gameOver();
     }
   }
+
+  checkTime () {
+ if (this.chronometer.currentTime === 0) 
+ this.gameOver();
+}
+
 
   gameOver() {
     const gameOverBoard = document.getElementById("game-over-board");

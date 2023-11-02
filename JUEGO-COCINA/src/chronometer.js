@@ -25,20 +25,30 @@ class Chronometer {
   
       this.container.appendChild(this.element);
     }
-
     start(printTimeCallback) {
         this.intervalId = setInterval(() => {
             console.log(this.currentTime)
             this.currentTime--; // Restar 1 al tiempo
             this.chronometerTextEl.textContent = `Time: ${this.currentTime}`;
-            if (this.currentTime < 0) {
-                this.stop(); // Detener el intervalo cuando llega a 0
+            if (this.currentTime <= 0) {
+                this.stop();
+                 // Detener el intervalo cuando llega a 0
             }
             if (printTimeCallback) {
                 printTimeCallback(this.currentTime);
             }
         }, 1000);
+
+        
     
 
 }
+
+stop() {
+    clearInterval(this.intervalId);
+     // Detener el intervalo
+    this.currentTime = 0;
+     // Restablecer el tiempo a 0
+}
+   
 }
