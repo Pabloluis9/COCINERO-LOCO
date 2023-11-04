@@ -22,12 +22,12 @@ class Game {
     this.player.move();
     this.enemy.move();
     this.checkTime();
-    // Mueve y verifica colisiones para los elementos existentes
+  
     this.items.forEach((item) => {
       item.move();
     });
     this.checkCollisions();
-    // Agrega nuevos elementos si corresponde
+   
     const randomValue = Math.random();
 
   
@@ -58,7 +58,7 @@ class Game {
     elemento.style.display = "block";
     setTimeout(function() {
         elemento.style.display = "none";
-    }, 250); // Mostrar durante 1 segundo (1000 ms)
+    }, 250); 
 }
   checkCollisions() {
     const getItem = document.getElementById("get-item");
