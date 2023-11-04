@@ -34,10 +34,10 @@ class Chronometer {
                 this.chronometerTextEl.style.color = "black"; 
                 this.element.style.animation = "none"; // Detener la animación
                 const countdownSound = document.getElementById("countdown");
-                countdownSound.pause(); // Pausar la música de cuenta regresiva
+                countdownSound.pause();
                 const music = document.getElementById("music");
                 if (music.paused) {
-                  music.play(); // Reproducir la música de fondo si aún no ha comenzado
+                  music.play(); 
                 }
             }
             if (this.currentTime <= 0) {
@@ -53,7 +53,7 @@ class Chronometer {
     stop() {
         clearInterval(this.intervalId);
         this.currentTime = 0;
-        this.chronometerTextEl.style.color = ""; // Restablecer el color del texto
+        this.chronometerTextEl.style.color = ""; 
         this.element.style.animation = "";
         const countdownSound = document.getElementById("countdown");
         countdownSound.pause();
