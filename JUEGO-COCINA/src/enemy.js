@@ -36,12 +36,12 @@ class Enemy {
             this.x -= this.vx;
         }
 
-        // Agrega una probabilidad aleatoria de cambio de dirección
+        
         if (Math.random() < 0.01) {
             this.isMovingRight = !this.isMovingRight;
         }
 
-        // Limita el movimiento dentro de la ventana
+   
         if (this.x <= 0) {
             this.isMovingRight = true;
           } else if (this.x + this.width >= this.container.offsetWidth) {
