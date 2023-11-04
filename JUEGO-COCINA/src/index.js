@@ -14,7 +14,6 @@ window.addEventListener("load", () => {
       });
 
       restartBtns.forEach((button) => {
-        console.log(button);
         button.addEventListener("click", () => {
           window.location.reload();
         });

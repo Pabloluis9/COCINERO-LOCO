@@ -96,7 +96,7 @@ body {
   #game-over-board {
     width: 800px;
     height: 500px;
-    background-color: blue;
+    background-image: url('./../assets/game-over-screen.png');
     background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
@@ -109,13 +109,27 @@ body {
     justify-content: center;
     flex-direction: column;
     display: none;
-    font-family: "Courier New", Courier, monospace;
-    color: red;
-    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
     z-index: 1003;
+    color:#ffffff
   }
   
   #game-over-board h1 {
     text-shadow: 2px 2px black;
+    font-size: 12px;
   }
 
+#btn-restart {
+  padding: 10px 35px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: none;
+  color: #9E86F2;
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  cursor: pointer;
+  position: absolute;
+  margin-bottom: 150px;
+}
