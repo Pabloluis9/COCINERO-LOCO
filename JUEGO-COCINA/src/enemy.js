@@ -27,7 +27,6 @@ class Enemy {
 
     iced (urlImage) {
         this.element.src = urlImage;
-        this.element.style.background = `url(./assets/enemy-ice.png)`;
     }
   
     move() {
