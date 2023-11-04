@@ -7,10 +7,10 @@ class Item {
     this.top = 0;
     this.speed = 3;
 
-    // Define los tipos de elementos disponibles
+    
     const itemTypes = ['apple', 'banana', 'burger', 'poison', 'hielo'];
     
-    // Selecciona aleatoriamente un tipo de elemento
+   
     this.type = itemTypes[Math.floor(Math.random() * itemTypes.length)];
 
     this.element = document.createElement("div");
@@ -29,18 +29,18 @@ class Item {
   }
 
   updatePosition() {
-    // Actualiza la posición del elemento basado en left y top
+    
     this.element.style.left = `${this.left}px`;
     this.element.style.top = `${this.top}px`;
   }
 
   move() {
-    // Mueve el elemento hacia abajo a una velocidad constante
+   
     this.top += this.speed;
-    // Actualiza la posición del elemento en la pantalla
+    
     this.updatePosition();
 
-    // Si el elemento se sale de la pantalla, elimínalo para evitar acumulación de elementos
+    
     if (this.top > this.container.offsetHeight) {
       this.element.remove();
     }
