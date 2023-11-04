@@ -24,6 +24,11 @@ class Enemy {
       this.container.appendChild(this.element);
       this.element.style.position = "absolute";
     }
+
+    iced (urlImage) {
+        this.element.src = urlImage;
+        this.element.style.background = `url(./assets/enemy-ice.png)`;
+    }
   
     move() {
         if (this.isMovingRight) {

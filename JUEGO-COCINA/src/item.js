@@ -8,7 +8,7 @@ class Item {
     this.speed = 3;
 
     // Define los tipos de elementos disponibles
-    const itemTypes = ['apple', 'banana', 'burger', 'poison'];
+    const itemTypes = ['apple', 'banana', 'burger', 'poison', 'hielo'];
     
     // Selecciona aleatoriamente un tipo de elemento
     this.type = itemTypes[Math.floor(Math.random() * itemTypes.length)];

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./styles/styles.css" rel="stylesheet">
-    <title>Document</title>
+    <link rel="icon" href="./assets/cocinero.png" type="image/x-icon">
+    <title>Cocinero Loco</title>
 </head>
 <body>
   <div id="game-board">
@@ -16,10 +17,32 @@
     <button id="intro-game-btn">START</button>
   </div>
   
- 
-  
+  <audio id="get-item">
+    <source src="./audio/get-item.wav" type="audio/wav">
+  </audio>
+  <audio id="burger">
+    <source src="./audio/burger.wav" type="audio/wav">
+  </audio>
+  <audio id="ice">
+    <source src="./audio/ice.wav" type="audio/wav">
+  </audio>
+  <audio id="more-time">
+    <source src="./audio/more-time.wav" type="audio/wav">
+  </audio>
+  <audio id="poison">
+    <source src="./audio/poison.wav" type="audio/wav">
+  </audio>
+  <audio id="music">
+    <source src="./audio/music.mp3" type="audio/mp3">
+  </audio>
+  <audio id="countdown">
+    <source src="./audio/countdown.wav" type="audio/wav">
+  </audio>
+  <script>
+    const music = document.getElementById("music");
+    music.volume = 0.2; // Establece el volumen al 50% (mitad del volumen)
+  </script>
  <div id="game-over-board">
-    <h1>GAME OVER</h1>
     <button id="btn-restart" class="btn-restart">RESTART</button>
   </div>
   <script src="./src/background.js"></script>
